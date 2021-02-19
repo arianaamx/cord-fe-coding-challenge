@@ -4,8 +4,6 @@
   "private": true,
   "dependencies": {
     "axios": "^0.19.0",
-    "node-sass": "^4.12.0",
-    "npm-run-all": "^4.1.5",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
     "react-router-dom": "^5.0.0",
@@ -13,6 +11,7 @@
     "styled-components": "^4.2.1"
   },
   "scripts": {
+    "node-sass": "node-sass --output-style compressed -o dist/css src/scss",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "build-css": "node-sass src/ -o src/",
@@ -35,5 +34,9 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "node-sass": "^4.14.1",
+    "npm-run-all": "^4.1.5"
   }
 }
