@@ -1,66 +1,51 @@
-import React, { useState } from "react";
+import React from "react";
 import { NavLink as Link } from "react-router-dom";
-import { useMediaQuery } from "react-responsive";
 
 import * as colors from "../../colors";
 import Arrow from "../../images/arrow-icon.png";
 import SearchWhite from "../../images/search-icon-white.png";
 
-import styled, { css } from "styled-components";
+import styled from "styled-components";
 
-const Mobile = ({ children }) => {
-  const isMobile = useMediaQuery({ maxWidth: 767 });
-  return isMobile ? children : null;
-};
-const Default = ({ children }) => {
-  const isNotMobile = useMediaQuery({ minWidth: 768 });
-  return isNotMobile ? children : null;
-};
-
-function SideNavBar() {
-  const [activeSideBar, setActiveSideBar] = useState(true);
-
+function SideNavBar({ active, closeMenu }) {
   const handleMenuClose = () => {
-    setActiveSideBar(!activeSideBar);
+    closeMenu(!active);
   };
 
   return (
     <>
-      <Mobile>{/* Implement a hamburger icon slide in effect for mobile devices */}Mobile</Mobile>
-      <Default>
-        <SideNavBarCont isVisible={activeSideBar}>
-          <SideNavMainLink mainlink={+true} className="menu_nav_link" to="/" activeClassName="active" exact>
-            Wesley
-            <NavIcon arrow onClick={handleMenuClose}>
-              <img src={Arrow} alt="menuArrow" />
-            </NavIcon>
-          </SideNavMainLink>
-          <SideNavMainLink discoverlink={+true} className="menu_nav_link" to="/discover" activeClassName="active">
-            Discover
-            <NavIcon search>
-              <img src={SearchWhite} alt="menuSearch" />
-            </NavIcon>
-          </SideNavMainLink>
-          <SideNavHeader>
-            <HeaderText>Watched</HeaderText>
-          </SideNavHeader>
-          <NavLink className="menu_nav_link" to="/watched/movies" activeClassName="active">
-            Movies
-          </NavLink>
-          <NavLink className="menu_nav_link" to="/watched/tv-shows" activeClassName="active">
-            TV Shows
-          </NavLink>
-          <SideNavHeader>
-            <HeaderText>Saved</HeaderText>
-          </SideNavHeader>
-          <NavLink className="menu_nav_link" to="/saved/movies" activeClassName="active">
-            Movies
-          </NavLink>
-          <NavLink className="menu_nav_link" to="/saved/tv-shows" activeClassName="active">
-            TV Shows
-          </NavLink>
-        </SideNavBarCont>
-      </Default>
+      <SideNavBarCont isVisible={active}>
+        <SideNavMainLink mainlink={+true} className="menu_nav_link" to="/" activeClassName="active" exact>
+          Wesley
+          <NavIcon arrow onClick={handleMenuClose}>
+            <img src={Arrow} alt="menuArrow" />
+          </NavIcon>
+        </SideNavMainLink>
+        <SideNavMainLink discoverlink={+true} className="menu_nav_link" to="/discover" activeClassName="active">
+          Discover
+          <NavIcon search>
+            <img src={SearchWhite} alt="menuSearch" />
+          </NavIcon>
+        </SideNavMainLink>
+        <SideNavHeader>
+          <HeaderText>Watched</HeaderText>
+        </SideNavHeader>
+        <NavLink className="menu_nav_link" to="/watched/movies" activeClassName="active">
+          Movies
+        </NavLink>
+        <NavLink className="menu_nav_link" to="/watched/tv-shows" activeClassName="active">
+          TV Shows
+        </NavLink>
+        <SideNavHeader>
+          <HeaderText>Saved</HeaderText>
+        </SideNavHeader>
+        <NavLink className="menu_nav_link" to="/saved/movies" activeClassName="active">
+          Movies
+        </NavLink>
+        <NavLink className="menu_nav_link" to="/saved/tv-shows" activeClassName="active">
+          TV Shows
+        </NavLink>
+      </SideNavBarCont>
     </>
   );
 }
@@ -73,11 +58,8 @@ const SideNavBarCont = styled.div`
   width: 260px;
   height: 100%;
   background-color: ${colors.sideNavBar};
-  ${(props) =>
-    !props.isVisible &&
-    `
-    display:none
-    `};
+  transform: ${(props) => (props.isVisible ? `translateX(0)` : `translateX(-100%)`)};
+  transition: transform 1s ease;
 `;
 
 const SideNavMainLink = styled(Link)`
