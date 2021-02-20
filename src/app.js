@@ -1,22 +1,22 @@
 import React from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
-import styled from 'styled-components';
+import styled from "styled-components";
 
-import SideNavBar from "./components/sidenavbar";
+import Menu from "./pages/home";
 
 import Discover from "./pages/discover";
 
-import './css/app.css'; 
+import "./css/app.css";
 
 export default class App extends React.Component {
-  render () {
+  render() {
     return (
       <Router>
         <PageContainer>
-          <SideNavBar {...this.props} />
+          <Menu />
           <ContentWrapper>
             <Switch>
-              <Route path="/discover" component={Discover} {...this.props}/>
+              <Route path="/discover" component={Discover} {...this.props} />
             </Switch>
           </ContentWrapper>
         </PageContainer>
@@ -25,11 +25,10 @@ export default class App extends React.Component {
   }
 }
 
-
 const ContentWrapper = styled.main`
   padding-left: 280px;
-`
+`;
 
 const PageContainer = styled.main`
   overflow-x: hidden;
-`
+`;
