@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 
 import * as colors from "../../colors";
@@ -30,6 +30,10 @@ function Discover() {
   ]);
 
   // Write a function to preload the popular movies when page loads & get the movie genres
+  useEffect(() => {
+    fetcher.getPopularMovies(setResults);
+    fetcher.getMovieGenres(setGenreOptions);
+  }, []);
 
   // Write a function to get the movie details based on the movie id taken from the URL.
 
@@ -39,13 +43,13 @@ function Discover() {
 
   return (
     <DiscoverWrapper>
-      <MobilePageTitle>Discover</MobilePageTitle>
+      <MobilePageTitle>{/* Discover {JSON.stringify(popularMovies, null, 2)} */}</MobilePageTitle>
       <MovieFilters>
         <SearchFilters
           genres={genreOptions}
           ratings={ratingOptions}
           languages={languageOptions}
-          searchMovies={(keyword, year) => this.searchMovies(keyword, year)}
+          searchMovies={(keyword, year) => searchMovies(keyword, year)}
         />
       </MovieFilters>
       <MovieResults>
@@ -60,7 +64,7 @@ function Discover() {
 export default Discover;
 
 const DiscoverWrapper = styled.div`
-  padding: 60px 35px;
+  /* padding: 60px 35px; */
 `;
 
 const TotalCounter = styled.div`

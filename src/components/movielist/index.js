@@ -1,21 +1,44 @@
-import React from "react";
-import styled from 'styled-components';
+import React, { useState } from "react";
+import styled from "styled-components";
 
-import MovieItem from '../movieitem';
+import MovieItem from "../movieitem";
 
-export default class MovieList extends React.Component {
+function MovieList({ movies, genres }) {
+  const objectToMapGenres = (genres) => {
+    let genresMap = new Map();
+    genres.forEach((element) => genresMap.set(element.id, element.name));
+    return genresMap;
+  };
 
-  render () {
-    const { movies, genres } = this.props;
+  const parseGenreNames = (ids, genres) => {
+    let genreNames = [];
+    ids.forEach((element) => genreNames.push(genres.get(element)));
+    return genreNames;
+  };
 
-    return (
-      <MoviesWrapper>
-        {/* Finish the MovieItem component and use it here to display the movie results */}
-      </MoviesWrapper>
-    )
-  }
+  const genresMap = objectToMapGenres(genres);
+
+  return (
+    <MoviesWrapper>
+      {movies.map((element, i) => {
+        return (
+          <MovieItem
+            key={element.id}
+            title={element.title}
+            genre={parseGenreNames(element.genre_ids, genresMap)}
+            releaseDate={element.release_date}
+            voteAverage={element.voteAverage}
+            backdropPath={element.backdrop_path}
+            overview={element.overview}
+          />
+        );
+      })}
+    </MoviesWrapper>
+  );
 }
+export default MovieList;
 
 const MoviesWrapper = styled.div`
   position: relative;
-`
+  margin-left: 45px;
+`;
