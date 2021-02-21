@@ -30,6 +30,7 @@ function MovieList({ movies, genres }) {
             voteAverage={element.voteAverage}
             backdropPath={element.backdrop_path}
             overview={element.overview}
+            posterPath={element.poster_path}
           />
         );
       })}
@@ -41,4 +42,5 @@ export default MovieList;
 const MoviesWrapper = styled.div`
   position: relative;
   margin-left: 45px;
+  margin-right: 15px;
 `;

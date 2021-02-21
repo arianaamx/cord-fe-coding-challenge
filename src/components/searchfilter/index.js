@@ -1,43 +1,60 @@
 import React from "react";
-import styled, { css } from 'styled-components';
+import styled, { css } from "styled-components";
+import { useMediaQuery } from "react-responsive";
 
 import * as colors from "../../colors";
 import ExpandableFilters from "../../components/expandablefilters";
 import SearchBar from "../../components/searchbar";
 
-export default class SearchFilters extends React.Component {
-  render () {
-    const { genres, ratings, languages, searchMovies } = this.props;
+const Mobile = ({ children }) => {
+  const isMobile = useMediaQuery({ maxWidth: 767 });
+  return isMobile ? children : null;
+};
 
-    return (
-      <FiltersWrapper>
+const Default = ({ children }) => {
+  const isNotMobile = useMediaQuery({ minWidth: 768 });
+  return isNotMobile ? children : null;
+};
+
+function SearchFilters({ genres, ratings, languages, searchMovies }) {
+  return (
+    <>
+      <Mobile>
         <SearchFiltersCont className="search_inputs_cont" marginBottom>
           {/* Implement a SearchBar component and use it for both the keyword and the year inputs */}
         </SearchFiltersCont>
-        <SearchFiltersCont>
-          <CategoryTitle>Movies</CategoryTitle>
-          {/* Implement a component called "ExpandableFilters" and use it for the filter categories */}
-        </SearchFiltersCont>
-      </FiltersWrapper>
-    )
-  }
+      </Mobile>
+      <Default>
+        <FiltersWrapper>
+          <SearchFiltersCont className="search_inputs_cont" marginBottom>
+            {/* Implement a SearchBar component and use it for both the keyword and the year inputs */}
+          </SearchFiltersCont>
+          <SearchFiltersCont>
+            <CategoryTitle>Movie</CategoryTitle>
+            {/* Implement a component called "ExpandableFilters" and use it for the filter categories */}
+          </SearchFiltersCont>
+        </FiltersWrapper>
+      </Default>
+    </>
+  );
 }
+export default SearchFilters;
 
 const FiltersWrapper = styled.div`
   position: relative;
-`
+`;
 
 const SearchFiltersCont = styled.div`
   background-color: white;
   padding: 20px;
   border-radius: 3px;
-  transition: all .3s ease-in-out;
-  
-  ${props => props.marginBottom && css`
-    margin-bottom: 15px;
-  `}
-`
+  transition: all 0.3s ease-in-out;
 
-const CategoryTitle = styled.div`
+  ${(props) =>
+    props.marginBottom &&
+    css`
+      margin-bottom: 15px;
+    `}
+`;
 
-`
+const CategoryTitle = styled.div``;

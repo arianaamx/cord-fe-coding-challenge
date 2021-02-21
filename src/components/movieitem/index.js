@@ -4,11 +4,13 @@ import * as colors from "../../colors";
 
 import styled from "styled-components";
 
-function MovieItem({ title, genre, overview, releaseDate, voteAverage, backdropPath }) {
+function MovieItem({ title, genre, overview, releaseDate, voteAverage, backdropPath, posterPath }) {
   return (
     // The MovieItemWrapper must be linked to the movie details popup
     <MovieItemWrapper>
-      <LeftCont>{backdropPath}</LeftCont>
+      <LeftCont>
+        <img src={`http://image.tmdb.org/t/p/w200${posterPath}`} alt="" />
+      </LeftCont>
       <RightCont>
         <h1>{title}</h1>
         {voteAverage}
@@ -28,12 +30,16 @@ const MovieItemWrapper = styled.div`
   position: relative;
   background-color: white;
   border-radius: 3px;
-  padding: 20px;
   margin-bottom: 15px;
+  padding: 20px 20px;
+
+  display: flex;
+  flex-direction: row;
 `;
 
 const LeftCont = styled.div`
   display: inline-block;
+  padding-right: 20px;
 `;
 
 const RightCont = styled.div`
