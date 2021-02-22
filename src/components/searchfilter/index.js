@@ -24,14 +24,19 @@ function SearchFilters({ genres, ratings, languages, searchMovies }) {
           {/* Implement a SearchBar component and use it for both the keyword and the year inputs */}
         </SearchFiltersCont>
       </Mobile>
+
       <Default>
         <FiltersWrapper>
           <SearchFiltersCont className="search_inputs_cont" marginBottom>
             {/* Implement a SearchBar component and use it for both the keyword and the year inputs */}
+            <SearchBar />
           </SearchFiltersCont>
           <SearchFiltersCont>
             <CategoryTitle>Movie</CategoryTitle>
             {/* Implement a component called "ExpandableFilters" and use it for the filter categories */}
+            <ExpandableFilters options={genres} title={`genres(s)`} />
+            <ExpandableFilters options={ratings} title={"min. vote"} />
+            <ExpandableFilters options={languages} title={"languages"} />
           </SearchFiltersCont>
         </FiltersWrapper>
       </Default>
@@ -57,4 +62,8 @@ const SearchFiltersCont = styled.div`
     `}
 `;
 
-const CategoryTitle = styled.div``;
+const CategoryTitle = styled.p`
+  margin: 0 0;
+  margin-bottom: 10px;
+  font-weight: 900;
+`;
