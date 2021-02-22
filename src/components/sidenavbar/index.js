@@ -29,6 +29,7 @@ function SideNavBar({ active, closeMenu }) {
         </SideNavMainLink>
         <SideNavHeader>
           <HeaderText>Watched</HeaderText>
+          <HeaderLine></HeaderLine>
         </SideNavHeader>
         <NavLink className="menu_nav_link" to="/watched/movies" activeClassName="active">
           Movies
@@ -38,6 +39,7 @@ function SideNavBar({ active, closeMenu }) {
         </NavLink>
         <SideNavHeader>
           <HeaderText>Saved</HeaderText>
+          <HeaderLine></HeaderLine>
         </SideNavHeader>
         <NavLink className="menu_nav_link" to="/saved/movies" activeClassName="active">
           Movies
@@ -84,7 +86,7 @@ const SideNavHeader = styled.div`
   padding: 35px 35px;
   padding-bottom: 15px;
   margin-bottom: 15px;
-  box-shadow: 35px 1px 1px -1px ${colors.lightBackground};
+  /* box-shadow: 35px 1px 1px -1px ${colors.lightBackground}; */
 `;
 
 const HeaderText = styled.div`
@@ -96,7 +98,13 @@ const HeaderText = styled.div`
 const NavLink = styled(Link)`
   display: block;
   padding-left: 35px;
-  color: white;
+  color: ${colors.lightBackground};
   font-weight: 300;
   padding-bottom: 10px;
+`;
+
+const HeaderLine = styled.hr`
+  margin-right: -35px;
+  background-color: ${colors.lightBackground};
+  border: 1px solid;
 `;
