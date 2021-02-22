@@ -27,7 +27,7 @@ function MovieList({ movies, genres }) {
             title={element.title}
             genre={parseGenreNames(element.genre_ids, genresMap)}
             releaseDate={element.release_date}
-            voteAverage={element.voteAverage}
+            voteAverage={element.vote_average}
             backdropPath={element.backdrop_path}
             overview={element.overview}
             posterPath={element.poster_path}
@@ -41,6 +41,5 @@ export default MovieList;
 
 const MoviesWrapper = styled.div`
   position: relative;
-  margin-left: 45px;
   margin-right: 15px;
 `;

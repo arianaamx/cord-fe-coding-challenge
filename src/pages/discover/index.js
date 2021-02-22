@@ -1,11 +1,22 @@
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
+import { useMediaQuery } from "react-responsive";
 
 import * as colors from "../../colors";
 import * as fetcher from "../../fetcher";
 
 import SearchFilters from "../../components/searchfilter";
 import MovieList from "../../components/movielist";
+
+const Mobile = ({ children }) => {
+  const isMobile = useMediaQuery({ maxWidth: 767 });
+  return isMobile ? children : null;
+};
+
+const Default = ({ children }) => {
+  const isNotMobile = useMediaQuery({ minWidth: 768 });
+  return isNotMobile ? children : null;
+};
 
 function Discover() {
   const [keyword, setKeyword] = useState("");
@@ -42,37 +53,55 @@ function Discover() {
   };
 
   return (
-    <DiscoverWrapper>
-      <MobilePageTitle>{/* Discover {JSON.stringify(popularMovies, null, 2)} */}</MobilePageTitle>
-      <MovieFilters>
-        <SearchFilters
-          genres={genreOptions}
-          ratings={ratingOptions}
-          languages={languageOptions}
-          searchMovies={(keyword, year) => searchMovies(keyword, year)}
-        />
-      </MovieFilters>
-      <MovieResults>
-        {totalCount > 0 && <TotalCounter>{totalCount} results</TotalCounter>}
-        <MovieList movies={results || []} genres={genreOptions || []} />
-        {/* Each movie must have a unique URL and if clicked a pop-up should appear showing the movie details and the action buttons as shown in the wireframe */}
-      </MovieResults>
-    </DiscoverWrapper>
+    <>
+      <Mobile>
+        <MobilePageTitle>{/* Discover {JSON.stringify(popularMovies, null, 2)} */}</MobilePageTitle>
+        <MovieResults>
+          {totalCount > 0 && <TotalCounter>{totalCount} results</TotalCounter>}
+          <MovieList movies={results || []} genres={genreOptions || []} />
+          {/* Each movie must have a unique URL and if clicked a pop-up should appear showing the movie details and the action buttons as shown in the wireframe */}
+        </MovieResults>
+      </Mobile>
+      <Default>
+        {/* <p>1540 movies</p> */}
+        <DiscoverWrapper>
+          <MovieResults>
+            {totalCount > 0 && <TotalCounter>{totalCount} results</TotalCounter>}
+            <MovieList movies={results || []} genres={genreOptions || []} />
+            {/* Each movie must have a unique URL and if clicked a pop-up should appear showing the movie details and the action buttons as shown in the wireframe */}
+          </MovieResults>
+          <MovieFilters>
+            <SearchFilters
+              genres={genreOptions}
+              ratings={ratingOptions}
+              languages={languageOptions}
+              searchMovies={(keyword, year) => searchMovies(keyword, year)}
+            />
+          </MovieFilters>
+        </DiscoverWrapper>
+      </Default>
+    </>
   );
 }
 
 export default Discover;
 
 const DiscoverWrapper = styled.div`
-  /* padding: 60px 35px; */
+  display: flex;
+  flex-direction: row;
+  padding: 35px 45px;
 `;
 
 const TotalCounter = styled.div`
   font-weight: 900;
 `;
 
-const MovieResults = styled.div``;
+const MovieResults = styled.div`
+  flex: 2;
+`;
 
-const MovieFilters = styled.div``;
+const MovieFilters = styled.div`
+  flex: 1;
+`;
 
 const MobilePageTitle = styled.header``;
