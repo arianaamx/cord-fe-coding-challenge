@@ -20,16 +20,17 @@ function SearchFilters({ genres, ratings, languages, searchMovies }) {
   return (
     <>
       <Mobile>
-        <SearchFiltersCont className="search_inputs_cont" marginBottom>
+        <SearchFiltersContMobile marginBottom>
           {/* Implement a SearchBar component and use it for both the keyword and the year inputs */}
-        </SearchFiltersCont>
+          <SearchBar searchMovies={searchMovies} />
+        </SearchFiltersContMobile>
       </Mobile>
 
       <Default>
         <FiltersWrapper>
           <SearchFiltersCont className="search_inputs_cont" marginBottom>
             {/* Implement a SearchBar component and use it for both the keyword and the year inputs */}
-            <SearchBar />
+            <SearchBar searchMovies={searchMovies} />
           </SearchFiltersCont>
           <SearchFiltersCont>
             <CategoryTitle>Movie</CategoryTitle>
@@ -51,6 +52,18 @@ const FiltersWrapper = styled.div`
 
 const SearchFiltersCont = styled.div`
   background-color: white;
+  padding: 20px;
+  border-radius: 3px;
+  transition: all 0.3s ease-in-out;
+
+  ${(props) =>
+    props.marginBottom &&
+    css`
+      margin-bottom: 15px;
+    `}
+`;
+
+const SearchFiltersContMobile = styled.div`
   padding: 20px;
   border-radius: 3px;
   transition: all 0.3s ease-in-out;
