@@ -42,7 +42,7 @@ function Discover() {
 
   // Write a function to preload the popular movies when page loads & get the movie genres
   useEffect(() => {
-    fetcher.getPopularMovies(setResults);
+    fetcher.getPopularMovies(setResults, setTotalCount);
     fetcher.getMovieGenres(setGenreOptions);
   }, []);
 
@@ -50,23 +50,37 @@ function Discover() {
 
   const searchMovies = async (keyword, year) => {
     // Write a function to trigger the API request and load the search results based on the keyword and year given as parameters
+    console.log(keyword);
+    if (keyword === "") {
+      fetcher.getPopularMovies(setResults, setTotalCount);
+    } else {
+      fetcher.getSearchMovie(keyword, setResults, setTotalCount);
+    }
   };
 
   return (
     <>
       <Mobile>
-        <MobilePageTitle>{/* Discover {JSON.stringify(popularMovies, null, 2)} */}</MobilePageTitle>
-        <MovieResults>
-          {totalCount > 0 && <TotalCounter>{totalCount} results</TotalCounter>}
-          <MovieList movies={results || []} genres={genreOptions || []} />
-          {/* Each movie must have a unique URL and if clicked a pop-up should appear showing the movie details and the action buttons as shown in the wireframe */}
-        </MovieResults>
+        <DiscoverMobileWrapper>
+          <MovieFilters>
+            <SearchFilters
+              genres={genreOptions}
+              ratings={ratingOptions}
+              languages={languageOptions}
+              searchMovies={(keyword, year) => searchMovies(keyword, year)}
+            />
+          </MovieFilters>
+          <MovieResults>
+            {totalCount > 0 && <TotalCounter>{totalCount} movies</TotalCounter>}
+            <MovieList movies={results || []} genres={genreOptions || []} />
+            {/* Each movie must have a unique URL and if clicked a pop-up should appear showing the movie details and the action buttons as shown in the wireframe */}
+          </MovieResults>
+        </DiscoverMobileWrapper>
       </Mobile>
       <Default>
-        {/* <p>1540 movies</p> */}
+        {totalCount > 0 && <TotalCounter>{totalCount} results</TotalCounter>}
         <DiscoverWrapper>
           <MovieResults>
-            {totalCount > 0 && <TotalCounter>{totalCount} results</TotalCounter>}
             <MovieList movies={results || []} genres={genreOptions || []} />
             {/* Each movie must have a unique URL and if clicked a pop-up should appear showing the movie details and the action buttons as shown in the wireframe */}
           </MovieResults>
@@ -90,10 +104,18 @@ const DiscoverWrapper = styled.div`
   display: flex;
   flex-direction: row;
   padding: 35px 45px;
+  padding-top: 0;
+`;
+
+const DiscoverMobileWrapper = styled.div`
+  padding: 0 35px;
 `;
 
 const TotalCounter = styled.div`
-  font-weight: 900;
+  font-weight: 300;
+  padding-top: 35px;
+  padding-left: 45px;
+  padding-bottom: 10px;
 `;
 
 const MovieResults = styled.div`

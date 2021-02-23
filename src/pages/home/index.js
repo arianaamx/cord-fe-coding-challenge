@@ -31,22 +31,21 @@ function Home() {
     }
   }, [isMobile]);
 
-  const handlMenu = () => {
+  const handleMenu = () => {
     setActiveSideBar(!activeSideBar);
   };
 
   return (
     <>
       <Mobile>
-        {/* Implement a hamburger icon slide in effect for mobile devices */}
         <SideNavBar active={activeSideBar} closeMenu={setActiveSideBar} />
         <MobileNavigation>
-          <AiOutlineMenu size={"3em"} color={colors.sideNavBar} onClick={handlMenu} />
+          <AiOutlineMenu size={"3em"} color={colors.sideNavBar} onClick={handleMenu} />
           <NavigationTitle>Discover</NavigationTitle>
         </MobileNavigation>
       </Mobile>
       <Default>
-        <SideNavBar active={activeSideBar} closeMenu={setActiveSideBar} />
+        <SideNavBar active={true} closeMenu={setActiveSideBar} />
       </Default>
     </>
   );
