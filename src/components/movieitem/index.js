@@ -1,6 +1,7 @@
 import React from "react";
 
 import * as colors from "../../colors";
+import PosterNotAvailable from "../../images/poster-not-found.png";
 
 import styled from "styled-components";
 
@@ -9,7 +10,10 @@ function MovieItem({ title, genre, overview, releaseDate, voteAverage, backdropP
     // The MovieItemWrapper must be linked to the movie details popup
     <MovieItemWrapper>
       <LeftCont>
-        <PosterImage src={`http://image.tmdb.org/t/p/w200${posterPath}`} alt="" />
+        <PosterImage
+          src={posterPath ? `http://image.tmdb.org/t/p/w500${posterPath}` : PosterNotAvailable}
+          alt="Poster image"
+        />
       </LeftCont>
       <RightCont>
         <MovieHeader>
