@@ -117,7 +117,7 @@ const MovieRating = styled.span`
   border-radius: 4px;
   max-width: 25px;
   max-height: 20px;
-  font-size: ${(props) => (props.isMobile ? "1em" : "1.5em")};
+  font-size: ${(props) => (props.isMobile ? "1em" : "1em")};
 `;
 
 const MovieGenres = styled.div`
