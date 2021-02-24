@@ -1,12 +1,15 @@
 import React from "react";
-import styled from "styled-components";
+import styled, { css } from "styled-components";
+import { useMediaQuery } from "react-responsive";
 
 import * as colors from "../../colors";
 import PosterNotAvailable from "../../images/poster-not-found.png";
 
 function Popup({ title, genre, overview, releaseDate, voteAverage, posterPath }) {
+  const isMobile = useMediaQuery({ maxWidth: 768 });
+
   return (
-    <PopupWrapper>
+    <PopupWrapper isMobile={isMobile}>
       <PopupItemWrapper>
         <LeftCont>
           <PosterImage
@@ -43,15 +46,30 @@ function Popup({ title, genre, overview, releaseDate, voteAverage, posterPath })
 export default Popup;
 
 const PopupWrapper = styled.div`
-  position: fixed;
-  left: 25%;
-  right: 25%;
-  top: 25%;
-  bottom: auto;
-  margin: auto;
-  background: white;
-  z-index: 999;
-  border-radius: 4px;
+  ${(props) =>
+    props.isMobile
+      ? css`
+          position: fixed;
+          left: 15%;
+          right: 15%;
+          top: 10%;
+          bottom: auto;
+          margin: auto;
+          background: white;
+          z-index: 999;
+          border-radius: 4px;
+        `
+      : css`
+          position: fixed;
+          left: 25%;
+          right: 25%;
+          top: 25%;
+          bottom: auto;
+          margin: auto;
+          background: white;
+          z-index: 999;
+          border-radius: 4px;
+        `}
 `;
 const PopupItemWrapper = styled.div`
   position: relative;

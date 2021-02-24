@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useMediaQuery } from "react-responsive";
 
 import * as colors from "../../colors";
 import PosterNotAvailable from "../../images/poster-not-found.png";
@@ -9,6 +10,11 @@ import Popup from "../popup";
 
 function MovieItem({ title, genre, overview, releaseDate, voteAverage, backdropPath, posterPath }) {
   const [isComponentVisible, setIsComponentVisible] = useState(false);
+  const isMobile = useMediaQuery({ maxWidth: 768 });
+
+  const cutText = (text) => {
+    return JSON.stringify(text).substring(1, 150);
+  };
 
   return (
     <>
@@ -34,21 +40,21 @@ function MovieItem({ title, genre, overview, releaseDate, voteAverage, backdropP
             alt="Poster image"
           />
         </LeftCont>
-        <RightCont>
+        <RightCont isMobile={isMobile}>
           <MovieHeader>
-            <MovieTitle>{title}</MovieTitle>
-            <MovieRating>{voteAverage}</MovieRating>
+            <MovieTitle isMobile={isMobile}>{title}</MovieTitle>
+            <MovieRating isMobile={isMobile}>{voteAverage}</MovieRating>
           </MovieHeader>
           <MovieGenres>
             {genre.map((element, i) => {
               return (
-                <MoviteItemGenre key={i}>
+                <MoviteItemGenre isMobile={isMobile} key={i}>
                   {element} {genre[i + 1] ? "| " : ""}
                 </MoviteItemGenre>
               );
             })}
           </MovieGenres>
-          <p>{overview}</p>
+          <p>{isMobile ? cutText(overview) : overview}</p>
           <MovieReleaseDate>{releaseDate}</MovieReleaseDate>
         </RightCont>
       </MovieItemWrapper>
@@ -82,7 +88,7 @@ const PosterImage = styled.img`
 
 const RightCont = styled.div`
   position: relative;
-  flex: 3;
+  flex: ${(props) => (props.isMobile ? 2 : 3)};
   display: flex;
   flex-direction: column;
 `;
@@ -100,7 +106,7 @@ const MovieHeader = styled.div`
 
 const MovieTitle = styled.span`
   font-weight: 900;
-  font-size: 1.9em;
+  font-size: ${(props) => (props.isMobile ? "1em" : "1.9em")};
   color: ${colors.sideNavBar};
 `;
 
@@ -111,9 +117,12 @@ const MovieRating = styled.span`
   border-radius: 4px;
   max-width: 25px;
   max-height: 20px;
+  font-size: ${(props) => (props.isMobile ? "1em" : "1.5em")};
 `;
 
-const MovieGenres = styled.div``;
+const MovieGenres = styled.div`
+  font-size: ${(props) => (props.isMobile ? "0.5em" : "0.9em")};
+`;
 
 const MovieReleaseDate = styled.div`
   position: absolute;
