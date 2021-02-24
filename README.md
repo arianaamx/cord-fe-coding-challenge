@@ -1,14 +1,14 @@
 # Cohire Coding Challenge (Frontend)
 
-## Last Updated
+### Last Updated
 
 24-02-2021
 
-### Introduction
+## Introduction
 
 Welcome! This coding challenge is designed to show my React & SCSS frontend skills.
 
-### The challenge
+## The challenge
 
 You have to complete the test and write any necessary code so that the search page looks like this [mockup]. All the images/icons you need are already imported into this repository.
 
