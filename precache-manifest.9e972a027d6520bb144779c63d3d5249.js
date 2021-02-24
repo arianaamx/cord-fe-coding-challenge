@@ -1,10 +1,10 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "2aff988da4ad4386d333f08f69187fe1",
+    "revision": "187702c1ba887e4bcc6b708798b098a3",
     "url": "/cord-fe-coding-challenge/index.html"
   },
   {
-    "revision": "d62d51885e75ef498f7d",
+    "revision": "6fa58c12a8e8ca2d134f",
     "url": "/cord-fe-coding-challenge/static/css/main.df26aff6.chunk.css"
   },
   {
@@ -12,8 +12,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/cord-fe-coding-challenge/static/js/2.41a18fab.chunk.js"
   },
   {
-    "revision": "d62d51885e75ef498f7d",
-    "url": "/cord-fe-coding-challenge/static/js/main.879e2237.chunk.js"
+    "revision": "6fa58c12a8e8ca2d134f",
+    "url": "/cord-fe-coding-challenge/static/js/main.bceffbf2.chunk.js"
   },
   {
     "revision": "66dc14d3bbb1b394f6b0",
