@@ -15,7 +15,14 @@ function MovieItem({ title, genre, overview, releaseDate, voteAverage, backdropP
       {isComponentVisible && (
         <>
           <PopupBackground onClick={() => setIsComponentVisible(false)}></PopupBackground>
-          <Popup title={title} />
+          <Popup
+            title={title}
+            genre={genre}
+            overview={overview}
+            posterPath={posterPath}
+            voteAverage={voteAverage}
+            releaseDate={releaseDate}
+          />
         </>
       )}
       {/* // The MovieItemWrapper must be linked to the movie details popup */}
