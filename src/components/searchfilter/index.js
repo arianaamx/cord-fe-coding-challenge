@@ -2,7 +2,6 @@ import React from "react";
 import styled, { css } from "styled-components";
 import { useMediaQuery } from "react-responsive";
 
-import * as colors from "../../colors";
 import ExpandableFilters from "../../components/expandablefilters";
 import SearchBar from "../../components/searchbar";
 
