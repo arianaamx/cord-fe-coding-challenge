@@ -1,24 +1,21 @@
-import React from "react";
+import React, { useState } from "react";
 
 import * as colors from "../../colors";
 import PosterNotAvailable from "../../images/poster-not-found.png";
 
 import styled from "styled-components";
 
-import useComponentVisible from "../../hooks/useComponentVisible.js";
 import Popup from "../popup";
 
 function MovieItem({ title, genre, overview, releaseDate, voteAverage, backdropPath, posterPath }) {
-  const { ref, isComponentVisible, setIsComponentVisible } = useComponentVisible(false);
+  const [isComponentVisible, setIsComponentVisible] = useState(false);
 
   return (
     <>
       {isComponentVisible && (
         <>
-          <PopupBackground></PopupBackground>
-          <div ref={ref}>
-            <Popup title={title} />
-          </div>
+          <PopupBackground onClick={() => setIsComponentVisible(false)}></PopupBackground>
+          <Popup title={title} />
         </>
       )}
       {/* // The MovieItemWrapper must be linked to the movie details popup */}
