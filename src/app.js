@@ -1,5 +1,5 @@
 import React from "react";
-import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import { HashRouter as Router, Route, Switch } from "react-router-dom";
 import { useMediaQuery } from "react-responsive";
 import styled, { css } from "styled-components";
 
@@ -13,7 +13,7 @@ export default function App() {
   const isNotMobile = useMediaQuery({ minWidth: 768 });
 
   return (
-    <Router>
+    <Router basename={process.env.PUBLIC_URL}>
       <PageContainer>
         <Home />
         <ContentWrapper isNotMobile={isNotMobile}>
