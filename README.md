@@ -6,7 +6,7 @@
 
 ## Introduction
 
-Welcome! This coding challenge is designed to show my React & SCSS frontend skills. Working DEMO can be seen [here]
+Welcome! This coding challenge is designed to show my React & SCSS frontend skills. Working DEMO can be seen [here] - click on Discover.
 
 ## The challenge
 
