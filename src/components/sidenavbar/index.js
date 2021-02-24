@@ -15,7 +15,7 @@ function SideNavBar({ active, closeMenu }) {
   return (
     <>
       <SideNavBarCont isVisible={active}>
-        <SideNavMainLink mainlink={+true} className="menu_nav_link" to="/" activeClassName="active" exact>
+        <SideNavMainLink mainlink={+true} className="menu_nav_link" to="/discover" activeClassName="active" exact>
           Wesley
           <NavIcon arrow onClick={handleMenuClose}>
             <img src={Arrow} alt="menuArrow" />

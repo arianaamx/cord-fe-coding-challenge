@@ -18,7 +18,6 @@ export default function SearchBar({ searchMovies }) {
 
   const handleWordSearch = (event) => {
     setKeyword(event.target.value);
-    console.log(keyword);
   };
 
   return (

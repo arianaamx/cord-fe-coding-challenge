@@ -12,7 +12,6 @@ export const getPopularMovies = async (setPopularMovies, setTotalCount) => {
   await axios
     .get(`https://api.themoviedb.org/3/movie/popular?api_key=${API_KEY}`)
     .then((response) => {
-      console.log(response);
       setPopularMovies(response.data.results);
       setTotalCount(response.data.total_results);
     })
@@ -25,7 +24,6 @@ export const getMovieGenres = async (setGenreOptions) => {
   await axios
     .get(`https://api.themoviedb.org/3/genre/movie/list?api_key=${API_KEY}`)
     .then((response) => {
-      console.log(response);
       setGenreOptions(response.data.genres);
     })
     .catch((err) => {
@@ -37,7 +35,6 @@ export const getSearchMovie = async (keyword, setResults, setTotalCount) => {
   await axios
     .get(`https://api.themoviedb.org/3/search/movie?api_key=${API_KEY}&query=${keyword}`)
     .then((response) => {
-      console.log(response);
       setResults(response.data.results);
       setTotalCount(response.data.total_results);
     })

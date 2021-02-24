@@ -50,7 +50,6 @@ function Discover() {
 
   const searchMovies = async (keyword, year) => {
     // Write a function to trigger the API request and load the search results based on the keyword and year given as parameters
-    console.log(keyword);
     if (keyword === "") {
       fetcher.getPopularMovies(setResults, setTotalCount);
     } else {
