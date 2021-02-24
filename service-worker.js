@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 importScripts(
-  "/cord-fe-coding-challenge/precache-manifest.dd22ec9a6bf922bc4fce9eeaee2dd72f.js"
+  "/cord-fe-coding-challenge/precache-manifest.77558e044d8b95c737e849d0d0081f12.js"
 );
 
 self.addEventListener('message', (event) => {
