@@ -5,34 +5,50 @@ import PosterNotAvailable from "../../images/poster-not-found.png";
 
 import styled from "styled-components";
 
+import useComponentVisible from "../../hooks/useComponentVisible.js";
+import Popup from "../popup";
+
 function MovieItem({ title, genre, overview, releaseDate, voteAverage, backdropPath, posterPath }) {
+  const { ref, isComponentVisible, setIsComponentVisible } = useComponentVisible(false);
+
   return (
-    // The MovieItemWrapper must be linked to the movie details popup
-    <MovieItemWrapper>
-      <LeftCont>
-        <PosterImage
-          src={posterPath ? `http://image.tmdb.org/t/p/w500${posterPath}` : PosterNotAvailable}
-          alt="Poster image"
-        />
-      </LeftCont>
-      <RightCont>
-        <MovieHeader>
-          <MovieTitle>{title}</MovieTitle>
-          <MovieRating>{voteAverage}</MovieRating>
-        </MovieHeader>
-        <MovieGenres>
-          {genre.map((element, i) => {
-            return (
-              <MoviteItemGenre key={i}>
-                {element} {genre[i + 1] ? "| " : ""}
-              </MoviteItemGenre>
-            );
-          })}
-        </MovieGenres>
-        <p>{overview}</p>
-        <MovieReleaseDate>{releaseDate}</MovieReleaseDate>
-      </RightCont>
-    </MovieItemWrapper>
+    <>
+      {isComponentVisible && (
+        <>
+          <PopupBackground></PopupBackground>
+          <div ref={ref}>
+            <Popup title={title} />
+          </div>
+        </>
+      )}
+      {/* // The MovieItemWrapper must be linked to the movie details popup */}
+
+      <MovieItemWrapper onClick={() => setIsComponentVisible(true)}>
+        <LeftCont>
+          <PosterImage
+            src={posterPath ? `http://image.tmdb.org/t/p/w500${posterPath}` : PosterNotAvailable}
+            alt="Poster image"
+          />
+        </LeftCont>
+        <RightCont>
+          <MovieHeader>
+            <MovieTitle>{title}</MovieTitle>
+            <MovieRating>{voteAverage}</MovieRating>
+          </MovieHeader>
+          <MovieGenres>
+            {genre.map((element, i) => {
+              return (
+                <MoviteItemGenre key={i}>
+                  {element} {genre[i + 1] ? "| " : ""}
+                </MoviteItemGenre>
+              );
+            })}
+          </MovieGenres>
+          <p>{overview}</p>
+          <MovieReleaseDate>{releaseDate}</MovieReleaseDate>
+        </RightCont>
+      </MovieItemWrapper>
+    </>
   );
 }
 
@@ -101,4 +117,15 @@ const MovieReleaseDate = styled.div`
 
   color: ${colors.primaryColor};
   font-weight: 300;
+`;
+
+const PopupBackground = styled.div`
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: 100vw;
+  background-color: ${colors.sideNavBar};
+  opacity: 0.4;
+  z-index: 99;
 `;
