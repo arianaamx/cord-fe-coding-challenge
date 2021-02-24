@@ -36,8 +36,10 @@ function Popup({ title, genre, overview, releaseDate, voteAverage, posterPath })
         </RightCont>
       </PopupItemWrapper>
       <PopupButtons>
-        <Button>Watch Offline</Button>
-        <Button isDark>Watch Online</Button>
+        <Button isMobile={isMobile}>Watch Offline</Button>
+        <Button isDark isMobile={isMobile}>
+          Watch Online
+        </Button>
       </PopupButtons>
     </PopupWrapper>
   );
@@ -143,8 +145,17 @@ const PopupButtons = styled.div`
 `;
 
 const Button = styled.button`
-  padding: 10px 25px;
-  margin-left: 10px;
+  ${(props) =>
+    props.isMobile
+      ? css`
+          padding: 5px 10px;
+          margin-left: 5px;
+        `
+      : css`
+          padding: 10px 25px;
+          margin-left: 10px;
+        `}
+
   border-radius: 5px;
   border: 1px solid ${colors.sideNavBar};
   color: ${(props) => (props.isDark ? `${colors.lightBackground}` : `${colors.sideNavBar}`)};
