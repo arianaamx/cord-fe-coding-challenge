@@ -6,7 +6,7 @@
 
 ## Introduction
 
-Welcome! This coding challenge is designed to show my React & SCSS frontend skills.
+Welcome! This coding challenge is designed to show my React & SCSS frontend skills. Working DEMO can be seen [here]
 
 ## The challenge
 
@@ -38,3 +38,4 @@ To Start Server: `npm start`
 
 [mockup]: https://cord-coding-challenges.s3-eu-west-1.amazonaws.com/frontend-test-mockups.zip
 [themoviedb]: https://www.themoviedb.org/documentation/api
+[here]: https://arianaamx.github.io/cord-fe-coding-challenge/
