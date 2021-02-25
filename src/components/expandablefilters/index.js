@@ -22,13 +22,14 @@ export default function ExpandableFilters({ options, title }) {
         <ExpandableFiltersTitle> Select {title}</ExpandableFiltersTitle>
       </ExpandableFiltersTitleCont>
       <ExpandableFiltersOptions isOpen={filtersShown}>
-        {options.map((element) => {
-          return (
-            <OptionsChecboxWrapper>
-              <Checkbox key={element.id} label={element.name} id={element.id} />
-            </OptionsChecboxWrapper>
-          );
-        })}
+        {options !== undefined &&
+          options.map((element) => {
+            return (
+              <OptionsChecboxWrapper>
+                <Checkbox key={element.id} label={element.name} id={element.id} />
+              </OptionsChecboxWrapper>
+            );
+          })}
       </ExpandableFiltersOptions>
     </ExpandableFiltersWrapper>
   );
