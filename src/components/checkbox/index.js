@@ -11,7 +11,7 @@ export default function CheckBox({ isClicked, label, id }) {
 
   return (
     <CheckboxCont>
-      <InputCheck type="checkbox" checked={isChecked} onChange={handleInputChange} id={`${id}`} />
+      <InputCheck type="checkbox" title="checkbox" checked={isChecked} onChange={handleInputChange} id={`${id}`} />
       <label className="checbox-label" htmlFor={`${id}`}>
         {label}
       </label>
