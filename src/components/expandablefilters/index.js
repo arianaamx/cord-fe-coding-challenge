@@ -11,27 +11,35 @@ export default function ExpandableFilters({ options, title }) {
     setFilterShown(!filtersShown);
   };
 
+  const isOptionsDefined = (options) => {
+    if (options === undefined || options === []) return false;
+    return true;
+  };
+
   return (
-    <ExpandableFiltersWrapper>
-      <ExpandableFiltersTitleCont>
-        {filtersShown ? (
-          <AiOutlineMinus onClick={handleOnClickChange} size={"1.3em"} />
-        ) : (
-          <AiOutlinePlus onClick={handleOnClickChange} size={"1.3em"} />
-        )}
-        <ExpandableFiltersTitle> Select {title}</ExpandableFiltersTitle>
-      </ExpandableFiltersTitleCont>
-      <ExpandableFiltersOptions isOpen={filtersShown}>
-        {options !== undefined &&
-          options.map((element) => {
-            return (
-              <OptionsChecboxWrapper>
-                <Checkbox key={element.id} label={element.name} id={element.id} />
-              </OptionsChecboxWrapper>
-            );
-          })}
-      </ExpandableFiltersOptions>
-    </ExpandableFiltersWrapper>
+    <>
+      {isOptionsDefined(options) && (
+        <ExpandableFiltersWrapper title="expandable-filters">
+          <ExpandableFiltersTitleCont>
+            {filtersShown ? (
+              <AiOutlineMinus onClick={handleOnClickChange} size={"1.3em"} />
+            ) : (
+              <AiOutlinePlus onClick={handleOnClickChange} size={"1.3em"} />
+            )}
+            <ExpandableFiltersTitle> Select {title}</ExpandableFiltersTitle>
+          </ExpandableFiltersTitleCont>
+          <ExpandableFiltersOptions isOpen={filtersShown}>
+            {options.map((element) => {
+              return (
+                <OptionsChecboxWrapper key={element.id}>
+                  <Checkbox label={element.name} id={element.id} />
+                </OptionsChecboxWrapper>
+              );
+            })}
+          </ExpandableFiltersOptions>
+        </ExpandableFiltersWrapper>
+      )}
+    </>
   );
 
   // You need to create your own checkbox component with a custom checkmark
